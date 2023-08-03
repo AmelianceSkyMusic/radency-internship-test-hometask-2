@@ -1,0 +1,18 @@
+# vscode settings
+.vscode/*
+
+# temp folders
+_legacy*
+_backup*
+_temp*
+_lab*
+
+# temp files
+*._legacy*
+*._backup*
+*._temp*
+*._lab*
+
+#history
+.history
+.lh
