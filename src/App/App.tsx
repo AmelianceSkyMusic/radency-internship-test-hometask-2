@@ -6,6 +6,8 @@ import { AppRouter } from './AppRouter';
 
 export function App() {
 	return (
+		<Provider store={store}>
 			<AppRouter />
+		</Provider>
 	);
 }
