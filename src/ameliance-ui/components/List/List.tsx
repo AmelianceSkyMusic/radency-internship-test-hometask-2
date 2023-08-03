@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import { ReactChildren } from '../_LABS/ReactChildren';
+import { ReactChildren } from '../_LAB/ReactChildren';
 
 import s from './List.module.scss';
 

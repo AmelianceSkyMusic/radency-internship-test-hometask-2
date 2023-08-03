@@ -1,7 +1,7 @@
 import type { ComponentProps, ElementType } from 'react';
 import { forwardRef } from 'react';
 
-import { Component } from '../_LABS/Component';
+import { Component } from '../_LAB/Component';
 import { getGridClass } from './helpers/grid';
 import type { Grid } from './types/Grid';
 

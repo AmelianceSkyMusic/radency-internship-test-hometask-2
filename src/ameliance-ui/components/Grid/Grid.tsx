@@ -1,8 +1,8 @@
 import type { ElementType } from 'react';
 import { forwardRef } from 'react';
 
-import type { ComponentElement, ComponentProps } from '../_LABS/Component';
-import { Component } from '../_LABS/Component';
+import type { ComponentElement, ComponentProps } from '../_LAB/Component';
+import { Component } from '../_LAB/Component';
 
 import { join } from 'ameliance-scripts/scripts/join';
 

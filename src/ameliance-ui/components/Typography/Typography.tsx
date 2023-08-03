@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import { Component } from '../_LABS/Component';
+import { Component } from '../_LAB/Component';
 
 import s from './Typography.module.scss';
 
