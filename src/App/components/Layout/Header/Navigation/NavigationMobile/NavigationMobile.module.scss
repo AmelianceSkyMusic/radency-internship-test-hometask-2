@@ -1,0 +1,11 @@
+@use "~/ameliance-ui/styles/globals/" as *;
+
+.NavigationMobile {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.active .link {
+	font-weight: bold;
+}

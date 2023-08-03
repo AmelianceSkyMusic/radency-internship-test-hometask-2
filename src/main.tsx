@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 
-import App from './App/App';
+import { App } from './App/App';
 
 import '@fontsource/montserrat/300.css';
 import '@fontsource/montserrat/400.css';
