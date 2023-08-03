@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
-import asm from 'asm-ts-scripts';
-
 import s from './MenuItem.module.scss';
+
+import { join } from 'ameliance-scripts/scripts/join';
 
 export type MenuItemElement = HTMLLIElement;
 
@@ -11,25 +11,16 @@ export interface MenuItemProps extends ReactHTMLElementAttributes<MenuItemElemen
 	disabled?: boolean;
 }
 
-export const MenuItem = forwardRef<MenuItemElement, MenuItemProps>(({
-	disabled,
-	children,
-	className,
-	...rest
-}, ref) => {
-	const componentClass = [
-		disabled && s.disabled,
-	];
+export const MenuItem = forwardRef<MenuItemElement, MenuItemProps>(
+	({ disabled, children, className, ...rest }, ref) => {
+		const componentClass = [disabled && s.disabled];
 
-	return (
-		<li
-			className={asm.join(s.MenuItem, className, componentClass)}
-			ref={ref}
-			{...rest}
-		>
-			{children}
-		</li>
-	);
-});
+		return (
+			<li className={join(s.MenuItem, className, componentClass)} ref={ref} {...rest}>
+				{children}
+			</li>
+		);
+	},
+);
 
 MenuItem.displayName = 'MenuItem';

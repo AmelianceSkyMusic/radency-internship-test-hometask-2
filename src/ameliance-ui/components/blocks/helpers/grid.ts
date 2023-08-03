@@ -1,11 +1,11 @@
-import asm from 'asm-ts-scripts';
-
 import type { Grid } from '../types/Grid';
+
+import { join } from 'ameliance-scripts/scripts/join';
 
 export function getGridClass(grid: Grid) {
 	const grinColumnSize = grid?.size === 10 ? 'col10' : 'col';
 
-	const gridClass = asm.join([
+	const gridClass = join([
 		grid?.xx && `${grinColumnSize}-xx-${grid.xx}`,
 		grid?.xl && `${grinColumnSize}-xl-${grid.xl}`,
 		grid?.lg && `${grinColumnSize}-lg-${grid.lg}`,

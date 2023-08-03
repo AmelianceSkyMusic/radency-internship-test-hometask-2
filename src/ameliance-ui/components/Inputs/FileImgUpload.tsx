@@ -3,8 +3,6 @@ import { forwardRef, useEffect, useState } from 'react';
 // @ts-ignore
 import type { FieldErrors, FieldValues, TFieldValues } from 'react-hook-form';
 
-import asm from 'asm-ts-scripts';
-
 import { Avatar } from '../Avatar';
 import { CameraIcon } from '../icons/CameraIcon';
 import { Typography } from '../Typography';
@@ -12,6 +10,8 @@ import { Typography } from '../Typography';
 import typography from '../Typography/Typography.module.scss';
 import cs from './commonStyle.module.scss';
 import s from './FileImgUpload.module.scss';
+
+import { join } from 'ameliance-scripts/scripts/join';
 
 export type FileImgUploadElement = HTMLInputElement;
 
@@ -24,68 +24,68 @@ export interface FileImgUploadProps extends ReactHTMLElementAttributes<FileImgUp
 	defaultImg?: string;
 }
 
-export const FileImgUpload = forwardRef<FileImgUploadElement, FileImgUploadProps>(({
-	register,
-	errors,
-	watch,
-	accept,
-	label,
-	defaultImg = '',
-	children,
-	className,
-	...rest
-}, ref) => {
-	const [image, setImage] = useState<string>(defaultImg);
-	const files = watch ? watch(register ? register.name : null) : null;
+export const FileImgUpload = forwardRef<FileImgUploadElement, FileImgUploadProps>(
+	(
+		{ register, errors, watch, accept, label, defaultImg = '', children, className, ...rest },
+		ref,
+	) => {
+		const [image, setImage] = useState<string>(defaultImg);
+		const files = watch ? watch(register ? register.name : null) : null;
 
-	const setFileImages = (filesList: FileList | null) => {
-		if (filesList && filesList.length > 0) {
-			if (typeof filesList === 'string') {
-				setImage(filesList);
-			} else {
-				const fileImage = URL.createObjectURL(filesList[0]);
-				setImage(fileImage);
+		const setFileImages = (filesList: FileList | null) => {
+			if (filesList && filesList.length > 0) {
+				if (typeof filesList === 'string') {
+					setImage(filesList);
+				} else {
+					const fileImage = URL.createObjectURL(filesList[0]);
+					setImage(fileImage);
+				}
 			}
-		}
-	};
+		};
 
-	useEffect(() => {
-		if (watch && files) setFileImages(files as FileList);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [files]);
+		useEffect(() => {
+			if (watch && files) setFileImages(files as FileList);
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [files]);
 
-	const handleInputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (!watch && defaultImg) setFileImages(event.target.files);
-	};
+		const handleInputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+			if (!watch && defaultImg) setFileImages(event.target.files);
+		};
 
-	const errorMessage = errors ? errors[register?.name]?.message : '';
+		const errorMessage = errors ? errors[register?.name]?.message : '';
 
-	return (
-		<div className={asm.join(s.FileImgUpload, cs.container)}>
-			<Typography component="h5">{children}</Typography>
-			<div className={cs.inputBlockContainer}>
-				<label className={asm.join(s.container, typography.input)}>
-					<input
-						type="file"
-						accept={accept || ''}
-						className={asm.join(s.input, className)}
-						ref={ref}
-						onChange={handleInputOnChange}
-						{...register}
-						{...rest}
-					/>
-					{!image ? <Avatar><CameraIcon /></Avatar>
-						: <Avatar src={image} alt={image} /> }
-					{label}
-				</label>
-				{register && (
-					<Typography component="p2" className={asm.join(cs.error)}>
-						{typeof errorMessage === 'string' && errorMessage}
-					</Typography>
-				)}
+		return (
+			<div className={join(s.FileImgUpload, cs.container)}>
+				<Typography component="h5">{children}</Typography>
+				<div className={cs.inputBlockContainer}>
+					<label className={join(s.container, typography.input)}>
+						<input
+							type="file"
+							accept={accept || ''}
+							className={join(s.input, className)}
+							ref={ref}
+							onChange={handleInputOnChange}
+							{...register}
+							{...rest}
+						/>
+						{!image ? (
+							<Avatar>
+								<CameraIcon />
+							</Avatar>
+						) : (
+							<Avatar src={image} alt={image} />
+						)}
+						{label}
+					</label>
+					{register && (
+						<Typography component="p2" className={join(cs.error)}>
+							{typeof errorMessage === 'string' && errorMessage}
+						</Typography>
+					)}
+				</div>
 			</div>
-		</div>
-	);
-});
+		);
+	},
+);
 
 FileImgUpload.displayName = 'FileImgUpload';

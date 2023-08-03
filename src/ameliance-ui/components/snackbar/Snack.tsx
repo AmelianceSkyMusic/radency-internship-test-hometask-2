@@ -1,9 +1,5 @@
-import type React from 'react';
-import {
-	forwardRef, useEffect, useRef,
-} from 'react';
-
-import asm from 'asm-ts-scripts';
+import React from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 
 import { mergeRefs } from '~/ameliance-ui/helpers/mergeRefs';
 import { useSwipe } from '~/ameliance-ui/hooks/useSwipe';
@@ -22,9 +18,17 @@ import { useSnack } from './snackbar';
 
 import s from './Snack.module.scss';
 
+import { join } from 'ameliance-scripts/scripts/join';
+
 type SnackElement = HTMLDivElement;
 
-type SnackPosition = 'bottom-center' | 'top-center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+type SnackPosition =
+	| 'bottom-center'
+	| 'top-center'
+	| 'top-left'
+	| 'top-right'
+	| 'bottom-left'
+	| 'bottom-right';
 
 export interface SnackProps extends ReactHTMLElementAttributes<SnackElement> {
 	id: string;
@@ -47,124 +51,125 @@ function getIconByType(iconType?: NotificationTypes) {
 	return <AlertCircleIcon />;
 }
 
-export const Snack = forwardRef<SnackElement, SnackProps>(({
-	id,
-	message,
-	title = '',
-	type,
-	size = 'flex',
-	position = 'topRight',
-	oneLine,
-	onCloseButtonClick,
-	duration = 3000,
-	// children,
-	className,
-	...rest
-}, ref) => {
-	const snackRef = useRef<HTMLDivElement>(null);
-	const { remove } = useSnack();
+export const Snack = forwardRef<SnackElement, SnackProps>(
+	(
+		{
+			id,
+			message,
+			title = '',
+			type,
+			size = 'flex',
+			position = 'topRight',
+			oneLine,
+			onCloseButtonClick,
+			duration = 3000,
+			// children,
+			className,
+			...rest
+		},
+		ref,
+	) => {
+		const snackRef = useRef<HTMLDivElement>(null);
+		const { remove } = useSnack();
 
-	const componentClass = [
-		size && s[size],
-		type && s[type],
-		position && s[position],
-	];
+		const componentClass = [size && s[size], type && s[type], position && s[position]];
 
-	const contentViewClass = oneLine && s.oneLine;
+		const contentViewClass = oneLine && s.oneLine;
 
-	const snackTitle = title
-	|| ((type === 'alert' && 'Повідомлення!')
-	|| (type === 'info' && 'Інформація!')
-		|| (type === 'success' && 'Успіх!')
-		|| (type === 'error' && 'Помилка!')
-		|| (type === 'warn' && 'Попередження!'));
+		const snackTitle =
+			title ||
+			(type === 'alert' && 'Повідомлення!') ||
+			(type === 'info' && 'Інформація!') ||
+			(type === 'success' && 'Успіх!') ||
+			(type === 'error' && 'Помилка!') ||
+			(type === 'warn' && 'Попередження!');
 
-	const closeSnack = () => {
-		snackRef.current?.classList.add(s.hideSnackAnimation);
-		snackRef.current?.addEventListener('animationend', (event) => {
-			if (event.target === snackRef.current) {
-				event.stopPropagation();
-				remove(id);
-			}
-		});
-	};
-
-	// *----- auto dismiss -----
-	const dismissRef = useRef<ReturnType<typeof setTimeout>>();
-	useEffect(() => {
-		if (duration > 0) {
-			dismissRef.current = setTimeout(() => {
-				closeSnack();
-			}, duration);
-		}
-		return () => {
-			clearTimeout(dismissRef.current);
+		const closeSnack = () => {
+			snackRef.current?.classList.add(s.hideSnackAnimation);
+			snackRef.current?.addEventListener('animationend', (event) => {
+				if (event.target === snackRef.current) {
+					event.stopPropagation();
+					remove(id);
+				}
+			});
 		};
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
-	// // *----- progressbar -----
-	// const progressRef = useRef<ReturnType<typeof setInterval>>();
-	// const [progress, setProgress] = useState(autoDeleteTime);
-	// useEffect(() => {
-	// 	const complete = 100;
-	// 	if (autoDeleteTime > 0) {
-	// 		progressRef.current = setInterval(() => {
-	// 			if (progress < complete) {
-	// 				setProgress((prev) => prev + 1);
-	// 			}
-	// 		}, autoDeleteTime / complete);
-	// 	}
-	// 	return () => {
-	// 		clearInterval(progressRef.current);
-	// 	};
-	// // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
+		// *----- auto dismiss -----
+		const dismissRef = useRef<ReturnType<typeof setTimeout>>();
+		useEffect(() => {
+			if (duration > 0) {
+				dismissRef.current = setTimeout(() => {
+					closeSnack();
+				}, duration);
+			}
+			return () => {
+				clearTimeout(dismissRef.current);
+			};
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, []);
 
-	const { swipeDirection } = useSwipe({ ref: snackRef, targetDirection: 'right' });
+		// // *----- progressbar -----
+		// const progressRef = useRef<ReturnType<typeof setInterval>>();
+		// const [progress, setProgress] = useState(autoDeleteTime);
+		// useEffect(() => {
+		// 	const complete = 100;
+		// 	if (autoDeleteTime > 0) {
+		// 		progressRef.current = setInterval(() => {
+		// 			if (progress < complete) {
+		// 				setProgress((prev) => prev + 1);
+		// 			}
+		// 		}, autoDeleteTime / complete);
+		// 	}
+		// 	return () => {
+		// 		clearInterval(progressRef.current);
+		// 	};
+		// // eslint-disable-next-line react-hooks/exhaustive-deps
+		// }, []);
 
-	useEffect(() => {
-		if (swipeDirection === 'right') closeSnack();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [swipeDirection]);
+		const { swipeDirection } = useSwipe({ ref: snackRef, targetDirection: 'right' });
 
-	const handleCloseButtonClick = (event: React.MouseEvent<IconElement>) => {
-		if (onCloseButtonClick) onCloseButtonClick(event);
-		closeSnack();
-	};
+		useEffect(() => {
+			if (swipeDirection === 'right') closeSnack();
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [swipeDirection]);
 
-	return (
-		<div
-			className={asm.join(s.Snack, className, componentClass)}
-			ref={mergeRefs([ref, snackRef])}
-			{...rest}
-		>
-			<div className={s.content}>
-				<Icon>
-					{getIconByType(type)}
-				</Icon>
-				<div className={asm.join(s.textContent, contentViewClass)}>
-					<Typography component="h6" className={s.title}>
-						{snackTitle}
-					</Typography>
-					{typeof message === 'string'
-						? (
+		const handleCloseButtonClick = (event: React.MouseEvent<IconElement>) => {
+			if (onCloseButtonClick) onCloseButtonClick(event);
+			closeSnack();
+		};
+
+		return (
+			<div
+				className={join(s.Snack, className, componentClass)}
+				ref={mergeRefs([ref, snackRef])}
+				{...rest}
+			>
+				<div className={s.content}>
+					<Icon>{getIconByType(type)}</Icon>
+					<div className={join(s.textContent, contentViewClass)}>
+						<Typography component="h6" className={s.title}>
+							{snackTitle}
+						</Typography>
+						{typeof message === 'string' ? (
 							<Typography component="p1" className={s.message}>
 								{message}
 							</Typography>
-						) : message.map((text) => (
-							<Typography key={text} component="p1" className={s.message}>
-								{text}
-							</Typography>
-						))}
+						) : (
+							message.map((text) => (
+								<Typography key={text} component="p1" className={s.message}>
+									{text}
+								</Typography>
+							))
+						)}
+					</div>
+					{duration > 0 && <LoaderCounter timer={duration} />}
 				</div>
-				{duration > 0 && <LoaderCounter timer={duration} />}
+				<Icon size="small" onClick={handleCloseButtonClick}>
+					<XIcon size="small" />
+				</Icon>
 			</div>
-			<Icon size="small" onClick={handleCloseButtonClick}>
-				<XIcon size="small" />
-			</Icon>
-		</div>
-	);
-});
+		);
+	},
+);
 
 Snack.displayName = 'Snack';

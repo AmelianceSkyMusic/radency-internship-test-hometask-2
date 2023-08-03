@@ -1,11 +1,11 @@
-import asm from 'asm-ts-scripts';
-
 import { Block } from '../blocks/Block';
 import { Portal } from '../Portal';
 import type { SnackProps } from './Snack';
 import { Snack } from './Snack';
 
 import s from './SnacksContainer.module.scss';
+
+import { join } from 'ameliance-scripts/scripts/join';
 
 interface SnacksContainer {
 	snacks: SnackProps[];
@@ -28,7 +28,7 @@ export function SnacksContainer({
 
 	return (
 		<Portal>
-			<Block className={asm.join(s.SnacksContainer, componentPositionClass)}>
+			<Block className={join(s.SnacksContainer, componentPositionClass)}>
 				<>
 					{snacks.map((snack) => (
 						<Snack
