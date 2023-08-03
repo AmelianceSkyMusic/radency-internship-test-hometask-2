@@ -29,5 +29,6 @@ module.exports = {
 				],
 			},
 		],
+		'object-shorthand': ['error', 'always'],
 	},
 };

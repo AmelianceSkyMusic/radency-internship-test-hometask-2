@@ -34,8 +34,6 @@ module.exports = {
 		'@typescript-eslint/member-delimiter-style': 'warn',
 		'object-curly-spacing': 'off',
 		'@typescript-eslint/object-curly-spacing': ['warn', 'always'],
-		quotes: 'off',
-		'@typescript-eslint/quotes': ['warn', 'single'],
 		semi: 'off',
 		'@typescript-eslint/semi': 'warn',
 		'space-before-blocks': 'off',
