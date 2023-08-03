@@ -5,13 +5,13 @@
 _legacy*
 _backup*
 _temp*
-_lab*
+_labs*
 
 # temp files
 *._legacy*
 *._backup*
 *._temp*
-*._lab*
+*._labs*
 
 #history
 .history

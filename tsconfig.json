@@ -21,7 +21,7 @@
 		"noFallthroughCasesInSwitch": true
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-	"exclude": ["node_modules", "*/**/_backup*", "*/**/_legacy*", "*/**/_temp*", "*/**/_lab*"],
+	"exclude": ["node_modules", "*/**/_backup*", "*/**/_legacy*", "*/**/_temp*", "*/**/_labs*"],
 	"references": [{ "path": "./tsconfig.node.json" }],
 	"extends": "./tsconfig.paths.json"
 }
