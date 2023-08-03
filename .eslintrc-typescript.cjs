@@ -29,8 +29,6 @@ module.exports = {
 		// Formatting Rules
 		'comma-spacing': 'off',
 		'@typescript-eslint/comma-spacing': 'warn',
-		indent: 'off',
-		'@typescript-eslint/indent': ['error', 'tab'],
 		'keyword-spacing': 'off',
 		'@typescript-eslint/keyword-spacing': 'warn',
 		'@typescript-eslint/member-delimiter-style': 'warn',
