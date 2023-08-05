@@ -21,5 +21,6 @@ module.exports = {
 		],
 		'react/self-closing-comp': 'warn',
 		'object-shorthand': ['error', 'always'],
+		'prefer-destructuring': ['error', { object: true, array: false }],
 	},
 };
