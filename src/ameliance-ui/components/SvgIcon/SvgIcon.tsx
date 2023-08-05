@@ -16,15 +16,15 @@ export function SvgIcon({
 	className,
 	...rest
 }: SvgIconProps) {
-	const sizes = {
+	const sizes: Partial<Record<ComponentSizes, string>> = {
 		tiny: '12px',
 		small: '16px',
 		default: '24px',
 		medium: '32px',
 		large: '36px',
 		extra: '48px',
-		custom: '24px',
 	};
+	sizes.custom = sizes.default;
 
 	return (
 		<svg

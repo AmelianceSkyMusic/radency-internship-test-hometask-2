@@ -1,4 +1,4 @@
-html[data-theme="light"] {
+html[data-theme='light'] {
 	--color--bg-0-gradient: linear-gradient(to top right, #badaff, #faffc1);
 	--color--bg-1-gradient: linear-gradient(230deg, #a1b7ff, #9ff1ff);
 
@@ -66,12 +66,16 @@ html[data-theme="light"] {
 	// ...
 }
 
-html[data-theme="light"] {
+html[data-theme='light'] {
 	--a--color--saturation: 70%;
 
 	@mixin setColor($colorName, $shade) {
 		@for $i from 1 through 9 {
-			#{'--a--color--' + $colorName + '-' + $i}: hsl(#{$shade}, var(--a--color--saturation), #{10% * $i});
+			#{'--a--color--' + $colorName + '-' + $i}: hsl(
+				#{$shade},
+				var(--a--color--saturation),
+				#{10% * $i}
+			);
 		}
 	}
 
@@ -95,25 +99,25 @@ html[data-theme="light"] {
 		@include setColor($color, $shade);
 	}
 
-	--a--color--gray-11: hsl(0, 0%, 1%);
-	--a--color--gray-12: hsl(0, 0%, 3%);
-	--a--color--gray-13: hsl(0, 0%, 5%);
-	--a--color--gray-14: hsl(0, 0%, 8%);
-	--a--color--gray-15: hsl(0, 0%, 12%);
-	--a--color--gray-16: hsl(0, 0%, 18%);
-	--a--color--gray-17: hsl(0, 0%, 24%);
-	--a--color--gray-18: hsl(0, 0%, 32%);
-	--a--color--gray-19: hsl(0, 0%, 40%);
-	--a--color--gray-20: hsl(0, 0%, 50%);
-	--a--color--gray-21: hsl(0, 0%, 60%);
-	--a--color--gray-22: hsl(0, 0%, 68%);
-	--a--color--gray-23: hsl(0, 0%, 76%);
-	--a--color--gray-24: hsl(0, 0%, 82%);
-	--a--color--gray-25: hsl(0, 0%, 88%);
-	--a--color--gray-26: hsl(0, 0%, 92%);
-	--a--color--gray-27: hsl(0, 0%, 95%);
-	--a--color--gray-28: hsl(0, 0%, 97%);
-	--a--color--gray-29: hsl(0, 0%, 91%);
+	--a--color--shade-11: hsl(0, 0%, 1%);
+	--a--color--shade-12: hsl(0, 0%, 3%);
+	--a--color--shade-13: hsl(0, 0%, 5%);
+	--a--color--shade-14: hsl(0, 0%, 8%);
+	--a--color--shade-15: hsl(0, 0%, 12%);
+	--a--color--shade-16: hsl(0, 0%, 18%);
+	--a--color--shade-17: hsl(0, 0%, 24%);
+	--a--color--shade-18: hsl(0, 0%, 32%);
+	--a--color--shade-19: hsl(0, 0%, 40%);
+	--a--color--shade-20: hsl(0, 0%, 50%);
+	--a--color--shade-21: hsl(0, 0%, 60%);
+	--a--color--shade-22: hsl(0, 0%, 68%);
+	--a--color--shade-23: hsl(0, 0%, 76%);
+	--a--color--shade-24: hsl(0, 0%, 82%);
+	--a--color--shade-25: hsl(0, 0%, 88%);
+	--a--color--shade-26: hsl(0, 0%, 92%);
+	--a--color--shade-27: hsl(0, 0%, 95%);
+	--a--color--shade-28: hsl(0, 0%, 97%);
+	--a--color--shade-29: hsl(0, 0%, 91%);
 
 	--a--color--min: hsl(0, 0%, 0%);
 	--a--color--max: hsl(0, 0%, 100%);
