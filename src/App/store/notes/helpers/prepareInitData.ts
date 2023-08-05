@@ -14,7 +14,7 @@ export function prepareInitData(notes: InitNote[]): Note[] {
 		return {
 			id: note.id,
 			name: note.name,
-			created: getFormattedDate(note.created) || ' ',
+			created: getFormattedDate(note.created) || '',
 			category: CATEGORIES[note.category] as Category,
 			content: note.content,
 			dates: parseDateFromString(note.content) || ' ',
