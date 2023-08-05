@@ -40,7 +40,7 @@ export function TableRow<T>({ row, className, ...rest }: TableRowProps<T>) {
 								rowCell.cell({ rowCell, rowAllValues: row.rowAllValues })
 							)
 						) : (
-							typeof rowCell.value === 'string' && (
+							(typeof rowCell.value === 'string' || typeof rowCell.value === 'number') && (
 								<Typography component="p2">{rowCell.value}</Typography>
 							)
 						)}
