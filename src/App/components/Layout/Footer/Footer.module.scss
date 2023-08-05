@@ -1,4 +1,11 @@
-.Footer .container {
-	justify-content: center;
+.Footer {
+	display: flex;
 	padding-bottom: var(--gap);
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 16px;
 }
