@@ -4,6 +4,6 @@ import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
 	reducer: {
-		songsListReducer: notesSlice.reducer,
+		notesReducer: notesSlice.reducer,
 	},
 });

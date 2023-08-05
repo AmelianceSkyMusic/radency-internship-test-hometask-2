@@ -1,6 +1,6 @@
-import type { Note } from '~store/types/Note';
+import type { InitNote } from './types/InitNote';
 
-export const archivedNotes: Note[] = [
+export const archivedNotes: InitNote[] = [
 	{
 		id: 1640597959446,
 		created: 1640597959446,
