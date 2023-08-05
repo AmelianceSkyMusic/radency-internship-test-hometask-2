@@ -1,0 +1,15 @@
+.row {
+	height: 32px;
+	& > :first-child {
+		padding-left: 64px;
+	}
+	& > :last-child {
+		padding-right: 64px;
+	}
+}
+
+.cell {
+	min-width: 16px;
+	padding: 8px 16px;
+	background-color: var(--a--color--red-5);
+}
