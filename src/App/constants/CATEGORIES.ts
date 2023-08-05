@@ -1,4 +1,4 @@
-export const CATEGORIES = {
+export const CATEGORIES: Record<string, string> = {
 	idea: 'Idea',
 	quote: 'Quote',
 	task: 'Task',
