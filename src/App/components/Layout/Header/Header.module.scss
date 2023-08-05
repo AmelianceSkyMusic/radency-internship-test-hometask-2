@@ -1,10 +1,13 @@
 .Header {
 	display: flex;
+	height: 36px;
+	padding-top: calc(var(--gap) * 2);
+}
+
+.container {
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 36px;
-	padding: calc(var(--gap) * 2);
-	padding-bottom: 12px;
 }
 
 .logo {

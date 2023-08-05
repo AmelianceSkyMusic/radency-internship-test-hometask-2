@@ -9,10 +9,12 @@ import s from './Header.module.scss';
 export function Header() {
 	return (
 		<Block component="header" className={s.Header}>
-			<Typography component="h1" display="h5" className={s.logo}>
-				RADENCY
-			</Typography>
-			<Navigation />
+			<Grid container component="section" className={s.container}>
+				<Typography component="h1" display="h5" className={s.logo}>
+					RADENCY
+				</Typography>
+				<Navigation />
+			</Grid>
 		</Block>
 	);
 }
