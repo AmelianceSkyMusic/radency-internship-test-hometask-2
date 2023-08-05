@@ -1,0 +1,9 @@
+@use '~/ameliance-use-svg-icon/useSvgIcon' as *;
+
+$iconsSet: ('task', 'quote', 'idea', 'thought', 'edit', 'to-archive', 'from-archive', 'trash');
+
+@include useSvgIcon($icons: $iconsSet) {
+	width: 16px;
+	height: 16px;
+	background-color: var(--a--color--shade-11);
+}
