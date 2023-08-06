@@ -1,4 +1,16 @@
+.HomePage {
+	height: calc(100vh - 32px - 16px - (var(--gap) * 4));
+}
+
 .container {
 	display: flex;
+	flex: 1;
 	flex-direction: column;
+}
+
+.notes {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	overflow-y: auto;
 }

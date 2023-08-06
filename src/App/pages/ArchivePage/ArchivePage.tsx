@@ -1,3 +1,5 @@
+import { SummaryTable } from '~components/SummaryTable/SummaryTable';
+
 import { Block } from '~/ameliance-ui/components/blocks/Block';
 import { Grid } from '~/ameliance-ui/components/Grid';
 
@@ -9,7 +11,10 @@ export function ArchivePage() {
 	return (
 		<Block component="main" className={s.ArchivePage}>
 			<Grid container component="section" className={s.container}>
-				<ArchiveTable />
+				<Block className={s.notes}>
+					<ArchiveTable />
+				</Block>
+				<SummaryTable />
 			</Grid>
 		</Block>
 	);
