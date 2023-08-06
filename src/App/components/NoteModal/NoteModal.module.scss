@@ -1,0 +1,12 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 50vw;
+	height: fit-content;
+	row-gap: 16px;
+}
+
+.content {
+	display: flex;
+	flex: 1;
+}
