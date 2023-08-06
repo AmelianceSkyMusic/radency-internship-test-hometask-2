@@ -6,3 +6,4 @@ export * from './FileUpload';
 export * from './PasswordInput';
 export * from './TextInput';
 export * from './RadioButton';
+export * from './TextArea';

@@ -78,7 +78,7 @@ export const Dropdown = forwardRef<DropdownElement, DropdownProps>(
 							<ChevronDownIcon size="custom" style={{ width: 20, height: 20 }} />
 						</Icon>
 					</label>
-					{register && (
+					{errors && (
 						<Typography component="p2" className={join(cs.error)}>
 							{typeof errorMessage === 'string' && errorMessage}
 						</Typography>

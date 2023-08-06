@@ -15,6 +15,7 @@ export type ModalElement = HTMLDivElement;
 interface Button {
 	text?: string;
 	onClick?: () => void;
+	close?: boolean;
 	icon?: React.ReactElement;
 	iconPosition?: 'left' | 'right';
 	disabled?: boolean;
@@ -72,6 +73,7 @@ export const Modal = forwardRef<ModalElement, ModalProps>(
 		const handleAnimationend = () => {
 			if (show !== 'show') {
 				closeModal();
+				document.documentElement.style.scrollbarGutter = 'auto';
 				document.body.style.overflow = 'visible';
 				if (onClose) onClose();
 			}
@@ -83,13 +85,15 @@ export const Modal = forwardRef<ModalElement, ModalProps>(
 		};
 
 		const mainButtonHandler = () => {
-			if (mainButton?.onClick) mainButton.onClick();
-			if (!mainButton?.form) closeModal();
+			if (mainButton?.onClick) mainButton?.onClick();
+			if (mainButton?.close) closeModal();
+			// if (!mainButton?.form) closeModal();
 		};
 
 		const secondButtonHandler = () => {
 			if (secondButton?.onClick) secondButton.onClick();
-			if (!secondButton?.form) closeModal();
+			if (secondButton?.close) closeModal();
+			// if (!secondButton?.form) closeModal();
 		};
 
 		const typeClass = type ? s[type] : null;
@@ -104,6 +108,8 @@ export const Modal = forwardRef<ModalElement, ModalProps>(
 
 		useEffect(() => {
 			document.body.style.overflow = 'hidden';
+			const isScroll = document.body.scrollHeight > document.body.clientHeight;
+			if (isScroll) document.documentElement.style.scrollbarGutter = 'stable';
 		}, []);
 
 		const sizeClass = (size === 'medium' && s.medium) || (size === 'large' && s.large);
@@ -122,11 +128,13 @@ export const Modal = forwardRef<ModalElement, ModalProps>(
 						show={show === 'show'}
 					/>
 					<div className={join(sizeClass, s.content)}>
-						<div className={type && join(s.titleContainer, typeClass, type)}>
-							<Typography component="h4" className={s.title}>
-								{!noTitle && modalTitle}
-							</Typography>
-						</div>
+						{!noTitle && (
+							<div className={type && join(s.titleContainer, typeClass, type)}>
+								<Typography component="h4" className={s.title}>
+									{modalTitle}
+								</Typography>
+							</div>
+						)}
 						<div className={s.body}>{children}</div>
 						{!noButtons && (
 							<div className={s.buttons}>
@@ -135,7 +143,7 @@ export const Modal = forwardRef<ModalElement, ModalProps>(
 										size={secondButton?.size}
 										type={secondButton?.type || 'secondary'}
 										onClick={() => secondButtonHandler()}
-										// form={secondButton?.form}
+										form={secondButton?.form}
 										submit={secondButton?.isSubmit}
 										disabled={secondButton?.disabled}
 									>
@@ -150,7 +158,7 @@ export const Modal = forwardRef<ModalElement, ModalProps>(
 									size={mainButton?.size}
 									type={mainButton?.type || 'primary'}
 									onClick={() => mainButtonHandler()}
-									// form={mainButton?.form}
+									form={mainButton?.form}
 									submit={mainButton?.isSubmit}
 									disabled={mainButton?.disabled}
 								>

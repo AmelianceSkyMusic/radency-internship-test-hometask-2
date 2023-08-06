@@ -18,7 +18,7 @@ export interface TextInputProps extends ReactHTMLElementAttributes<TextInputElem
 }
 
 export const TextInput = forwardRef<TextInputElement, TextInputProps>(
-	({ register, errors, placeholder, children, ...rest }, ref) => {
+	({ register, errors, placeholder, className, children, ...rest }, ref) => {
 		const errorMessage = errors ? errors[register?.name]?.message : '';
 
 		return (
@@ -28,14 +28,14 @@ export const TextInput = forwardRef<TextInputElement, TextInputProps>(
 					<label>
 						<input
 							type="text"
-							className={join(cs.input, typography.input)}
+							className={join(cs.input, typography.input, className)}
 							placeholder={placeholder}
 							ref={ref}
 							{...register}
 							{...rest}
 						/>
 					</label>
-					{register && register?.name && (
+					{errors && (
 						<Typography component="p2" className={join(cs.error)}>
 							{typeof errorMessage === 'string' && errorMessage}
 						</Typography>

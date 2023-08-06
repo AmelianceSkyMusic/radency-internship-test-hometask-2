@@ -11,10 +11,11 @@ export interface ButtonProps extends ReactHTMLElementAttributes<ButtonElement> {
 	disabled?: boolean;
 	type?: 'primary' | 'secondary' | 'text';
 	submit?: boolean;
+	form?: string;
 }
 
 export const Button = forwardRef<ButtonElement, ButtonProps>(
-	({ size = 'default', type = 'primary', submit, children, className, ...rest }, ref) => {
+	({ size = 'default', type = 'primary', submit, form, children, className, ...rest }, ref) => {
 		// *----- check is icon should be button icon  -----
 		const hasLabel = Array.isArray(children)
 			? children?.some((child) => typeof child === 'string')
@@ -29,6 +30,7 @@ export const Button = forwardRef<ButtonElement, ButtonProps>(
 				type={submit ? 'submit' : 'button'}
 				className={join(s.Button, className, sizeClass, componentClass)}
 				ref={ref}
+				form={form}
 				{...rest}
 			>
 				<span className={join(s.label, typography.button, sizeClass)}>{children}</span>
