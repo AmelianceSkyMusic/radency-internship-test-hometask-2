@@ -1,5 +1,7 @@
+import type { Category } from './Category';
+
 export interface Summary {
-	category: string;
+	category: Category;
 	active: number;
 	archived: number;
 }

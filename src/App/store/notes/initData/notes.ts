@@ -1,6 +1,6 @@
-import type { InitNote } from './types/InitNote';
+import type { Note } from '~store/types/Note';
 
-export const notes: InitNote[] = [
+export const notes: Note[] = [
 	{
 		id: 1690997959446,
 		name: 'Shopping list',

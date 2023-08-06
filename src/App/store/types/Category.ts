@@ -1,1 +1,1 @@
-export type Category = 'Task' | 'Quote' | 'Idea' | 'Random Thought';
+export type Category = 'task' | 'quote' | 'idea' | 'thought';
