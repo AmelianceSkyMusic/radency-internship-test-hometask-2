@@ -8,7 +8,7 @@ import { useTypedDispatch } from '~store/hooks/useTypedDispatch';
 import { useTypedSelector } from '~store/hooks/useTypedSelector';
 import { notesSlice } from '~store/notes/notesSlice';
 
-import type { Note } from '~store/types/Note';
+import { AddNoteButton } from './AddNoteButton/AddNoteButton';
 import { EditTableButton } from './EditTableButton/EditTableButton';
 
 export function NotesTable() {
@@ -99,7 +99,7 @@ export function NotesTable() {
 	return (
 		<>
 			<Table columns={columns} data={mappedDate} />
-	return <Table columns={columns} data={notes} />;
+			<AddNoteButton />
 		</>
 	);
 }
