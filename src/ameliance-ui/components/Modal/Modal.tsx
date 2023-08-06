@@ -1,5 +1,7 @@
 import { forwardRef, useEffect, useState } from 'react';
 
+import { hasScrollBar } from '~/ameliance-ui/helpers/hasScrollBar';
+
 import { Backdrop } from '../Backdrop';
 import { Button } from '../Button';
 import { Portal } from '../Portal';
@@ -108,7 +110,7 @@ export const Modal = forwardRef<ModalElement, ModalProps>(
 
 		useEffect(() => {
 			document.body.style.overflow = 'hidden';
-			const isScroll = document.body.scrollHeight > document.body.clientHeight;
+			const isScroll = hasScrollBar(document.body);
 			if (isScroll) document.documentElement.style.scrollbarGutter = 'stable';
 		}, []);
 
@@ -135,7 +137,7 @@ export const Modal = forwardRef<ModalElement, ModalProps>(
 								</Typography>
 							</div>
 						)}
-						<div className={s.body}>{children}</div>
+						<div className={join(s.body, 'scroll')}>{children}</div>
 						{!noButtons && (
 							<div className={s.buttons}>
 								{isSecondButton && (
