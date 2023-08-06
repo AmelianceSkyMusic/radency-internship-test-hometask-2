@@ -1,15 +1,16 @@
+.TableHeader {
+	z-index: 1;
+	position: sticky;
+	top: 0;
+}
 .row {
-	height: 32px;
-	& > :first-child {
-		padding-left: 64px;
-	}
-	& > :last-child {
-		padding-right: 64px;
-	}
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--a--color--red-5);
 }
 
 .cell {
-	min-width: 16px;
-	padding: 8px 16px;
-	background-color: var(--a--color--red-5);
+	display: flex;
+	padding: 8px 8px;
 }

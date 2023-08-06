@@ -1,18 +1,15 @@
 .TableRow {
-	height: 32px;
-	border-bottom: 1px solid var(--a--color--red-8);
-	& > :first-child {
-		padding-left: 64px;
-	}
-	& > :last-child {
-		padding-right: 64px;
-	}
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	&:hover {
 		background-color: var(--a--color--red-9);
 	}
+	border-bottom: 1px solid var(--a--color--red-8);
 }
 
 .cell {
-	min-width: 16px;
-	padding: 8px 16px;
+	display: flex;
+	padding: 8px 8px;
+	overflow: hidden;
 }

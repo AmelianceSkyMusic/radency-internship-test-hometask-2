@@ -1,5 +1,7 @@
 import { Typography } from '~/ameliance-ui/components/Typography';
 
+import type { Column } from '../Table';
+
 import s from './TableRow.module.scss';
 
 import { join } from 'ameliance-scripts/scripts/join';
@@ -9,10 +11,8 @@ export interface RowCellData<T> {
 	rowCell?: RowCell<T>;
 }
 
-export interface RowCell<T> {
+export interface RowCell<T> extends Pick<Column<T>, 'key' | 'cell' | 'width'> {
 	value: T[keyof T];
-	key: string | number;
-	cell?: string | ((row: RowCellData<T>) => React.ReactElement);
 }
 
 interface Row<T> {
@@ -30,8 +30,11 @@ export function TableRow<T>({ row, className, ...rest }: TableRowProps<T>) {
 	return (
 		<tr className={join(s.TableRow, className)} {...rest}>
 			{row.cells.map((rowCell) => {
+				let styleSize;
+				if (typeof rowCell.width === 'string') styleSize = { width: rowCell.width };
+				if (typeof rowCell.width === 'number') styleSize = { flex: rowCell.width };
 				return (
-					<td className={s.cell} key={rowCell.key}>
+					<td className={s.cell} key={rowCell.key} style={styleSize || { flex: 1 }}>
 						{rowCell.cell ? (
 							typeof rowCell.cell === 'string' ? (
 								<Typography component="p2">{rowCell.cell}</Typography>
