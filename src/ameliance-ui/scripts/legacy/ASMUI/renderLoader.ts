@@ -1,4 +1,4 @@
-import { createHTMLElem } from 'asm-ts-scripts';
+import { createHTMLElem } from 'ameliance-scripts/scripts/createHTMLElem';
 
 export const renderLoader = (parent$: HTMLElement) => {
 	const fragment$: DocumentFragment = new DocumentFragment();

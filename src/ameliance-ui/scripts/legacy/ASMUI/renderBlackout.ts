@@ -1,5 +1,5 @@
 // using --> const blackout$ = ASMUI.renderBlackout(() => { ASMUI.removeBlackout(blackout$); });
-import { createHTMLElem } from 'asm-ts-scripts';
+import { createHTMLElem } from 'ameliance-scripts/scripts/createHTMLElem';
 
 type TFunc = () => void;
 export const renderBlackout = (...actions: TFunc[]) => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { forwardRef, useEffect, useRef } from 'react';
 
 import { mergeRefs } from '~/ameliance-ui/helpers/mergeRefs';
@@ -14,7 +13,7 @@ import { XCircleIcon } from '../icons/XCircleIcon';
 import { XIcon } from '../icons/XIcon';
 import { LoaderCounter } from '../Loader';
 import { Typography } from '../Typography';
-import { useSnack } from './snackbar';
+import { useSnack } from './useSnack';
 
 import s from './Snack.module.scss';
 
