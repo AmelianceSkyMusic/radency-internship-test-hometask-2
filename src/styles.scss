@@ -1,0 +1,16 @@
+@use '~/ameliance-ui/styles' as *;
+@use './icons.scss' as *;
+
+html {
+	scroll-padding-top: 0px;
+}
+
+body {
+	position: relative;
+	background: var(--color--bg-1-gradient);
+	background-attachment: fixed;
+}
+
+#root {
+	gap: var(--gap);
+}

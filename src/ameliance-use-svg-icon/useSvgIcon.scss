@@ -1,0 +1,21 @@
+/**
+* icons — icons set like: $iconsSet: (arrow-left, arrow-right)
+* $path — path to svg icons in public folder
+* $prefix — prefix to use in classes
+*/
+@mixin useSvgIcon($icons, $path: '/assets/icons/', $prefix: 'icon--') {
+	@each $icon in $icons {
+		.#{$prefix + $icon} {
+			background-color: currentColor;
+			mask-size: contain;
+			mask-position: center;
+			mask-repeat: no-repeat;
+			mask-image: url($path + $icon + '.svg');
+			-webkit-mask-size: contain;
+			-webkit-mask-position: center;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-image: url($path + $icon + '.svg');
+			@content;
+		}
+	}
+}

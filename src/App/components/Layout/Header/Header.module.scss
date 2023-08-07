@@ -1,0 +1,16 @@
+.Header {
+	display: flex;
+	padding-top: var(--gap);
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 32px;
+}
+
+.logo {
+	color: var(--a--color--red-5);
+	letter-spacing: 8px;
+}
