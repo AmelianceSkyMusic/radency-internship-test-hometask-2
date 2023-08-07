@@ -1,15 +1,14 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
-import asm from 'asm-ts-scripts';
-
-import { useScroll } from '~hooks/useScroll';
-import { useWindowSize } from '~hooks/useWindowSize';
-
+import { useScroll } from '~/ameliance-ui/components/_LAB/useScroll';
 import { mergeRefs } from '~/ameliance-ui/helpers/mergeRefs';
 
 import { Portal } from '../Portal';
+import { useWindowSize } from './useWindowSize';
 
 import s from './StickyButton.module.scss';
+
+import { join } from 'ameliance-scripts/scripts/join';
 
 export type StickyButtonElement = HTMLDivElement;
 

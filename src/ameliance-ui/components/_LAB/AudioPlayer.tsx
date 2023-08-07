@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
-import asm from 'asm-ts-scripts';
-
 import s from './AudioPlayer.module.scss';
+
+import { join } from 'ameliance-scripts/scripts/join';
 
 type AudioPlayerElement = HTMLAudioElement;
 

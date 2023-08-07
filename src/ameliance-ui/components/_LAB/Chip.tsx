@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
 
-import asm from 'asm-ts-scripts';
-
 import { Typography } from '../Typography';
 
 import s from './Chip.module.scss';
+
+import { join } from 'ameliance-scripts/scripts/join';
 
 export type ChipElement = HTMLDivElement;
 
@@ -27,7 +27,6 @@ export const Chip = forwardRef<ChipElement, ChipProps>(
 		const sizeClass = size && s[size];
 
 		return (
-			// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
 			<div
 				className={join(s.Chip, className, sizeClass, chipClass)}
 				onClick={handleOnClick}
